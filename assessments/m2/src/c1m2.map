@@ -1,0 +1,176 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+buffer              0xa               main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+MAIN_FLASH       0x0000000000000000 0x0000000000040000 xr
+INFO_FLASH       0x0000000000200000 0x0000000000004000 xr
+SRAM_CODE        0x0000000001000000 0x0000000000010000 xrw
+SRAM_DATA        0x0000000020000000 0x0000000000010000 rw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD memory.o
+LOAD main.o
+                0x0000000000000000                PROVIDE (_intvecs_base_address = DEFINED (_intvecs_base_address)?_intvecs_base_address:0x0)
+
+.intvecs
+ *(.intvecs)
+                0x0000000000200000                PROVIDE (_mailbox_base_address = 0x200000)
+
+.flashMailbox
+ *(.flashMailbox)
+                0x0000000000201000                PROVIDE (_tlv_base_address = 0x201000)
+
+.tlvTable
+ *(.tlvTable)
+                0x0000000000202000                PROVIDE (_bsl_base_address = 0x202000)
+
+.bslArea
+ *(.bslArea)
+                0x0000000020000000                PROVIDE (_vtable_base_address = DEFINED (_vtable_base_address)?_vtable_base_address:0x20000000)
+
+.vtable
+ *(.vtable)
+
+.text           0x0000000000000000      0x168
+ CREATE_OBJECT_SYMBOLS
+ *(.text)
+ .text          0x0000000000000000       0xb2 memory.o
+                0x0000000000000000                set_value
+                0x0000000000000024                clear_value
+                0x0000000000000040                get_value
+                0x000000000000005e                set_all
+                0x0000000000000096                clear_all
+ *fill*         0x00000000000000b2        0x2 
+ .text          0x00000000000000b4       0xb4 main.o
+                0x00000000000000b4                main
+ *(.text.*)
+                0x0000000000000168                . = ALIGN (0x4)
+ *(.ctors)
+                0x0000000000000168                . = ALIGN (0x4)
+ *(.dtors)
+                0x0000000000000168                . = ALIGN (0x4)
+                0x0000000000000168                __init_array_start = .
+ *(.init_array*)
+                0x0000000000000168                __init_array_end = .
+ *(.init)
+ *(.fini*)
+
+.glue_7         0x0000000000000168        0x0
+ .glue_7        0x0000000000000168        0x0 linker stubs
+
+.glue_7t        0x0000000000000168        0x0
+ .glue_7t       0x0000000000000168        0x0 linker stubs
+
+.vfp11_veneer   0x0000000000000168        0x0
+ .vfp11_veneer  0x0000000000000168        0x0 linker stubs
+
+.v4_bx          0x0000000000000168        0x0
+ .v4_bx         0x0000000000000168        0x0 linker stubs
+
+.iplt           0x0000000000000168        0x0
+ .iplt          0x0000000000000168        0x0 memory.o
+
+.rel.dyn        0x0000000000000168        0x0
+ .rel.iplt      0x0000000000000168        0x0 memory.o
+
+.rodata
+ *(.rodata)
+ *(.rodata.*)
+
+.ARM.exidx      0x0000000000000168        0x0
+                0x0000000000000168                __exidx_start = .
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x0000000000000168                __exidx_end = .
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x0000000000000168                __etext = .
+
+.data           0x0000000020000000        0x0 load address 0x0000000000000168
+                0x0000000000000168                __data_load__ = LOADADDR (.data)
+                0x0000000020000000                __data_start__ = .
+ *(.data)
+ .data          0x0000000020000000        0x0 memory.o
+ .data          0x0000000020000000        0x0 main.o
+ *(.data*)
+                0x0000000020000000                . = ALIGN (0x4)
+                0x0000000020000000                __data_end__ = .
+
+.igot.plt       0x0000000020000000        0x0 load address 0x0000000000000168
+ .igot.plt      0x0000000020000000        0x0 memory.o
+
+.bss            0x0000000020000000        0xc
+                0x0000000020000000                __bss_start__ = .
+ *(.shbss)
+ *(.bss)
+ .bss           0x0000000020000000        0x0 memory.o
+ .bss           0x0000000020000000        0x0 main.o
+ *(.bss.*)
+ *(COMMON)
+ COMMON         0x0000000020000000        0xa main.o
+                0x0000000020000000                buffer
+                0x000000002000000c                . = ALIGN (0x4)
+ *fill*         0x000000002000000a        0x2 
+                0x000000002000000c                __bss_end__ = .
+
+.heap           0x000000002000000c        0x0
+                0x000000002000000c                __heap_start__ = .
+                0x000000002000000c                end = __heap_start__
+                0x000000002000000c                _end = end
+                0x000000002000000c                __end = end
+ *(.heap)
+                0x000000002000000c                __heap_end__ = .
+                0x000000002000000c                __HeapLimit = __heap_end__
+
+.stack          0x0000000020000010        0x0
+                0x0000000020000010                _stack = .
+                0x0000000020000010                __stack = .
+ *(.stack)
+OUTPUT(c1m2.out elf32-littlearm)
+
+.debug_info     0x0000000000000000      0x284
+ .debug_info    0x0000000000000000      0x16e memory.o
+ .debug_info    0x000000000000016e      0x116 main.o
+
+.debug_abbrev   0x0000000000000000      0x178
+ .debug_abbrev  0x0000000000000000       0xaf memory.o
+ .debug_abbrev  0x00000000000000af       0xc9 main.o
+
+.debug_aranges  0x0000000000000000       0x40
+ .debug_aranges
+                0x0000000000000000       0x20 memory.o
+ .debug_aranges
+                0x0000000000000020       0x20 main.o
+
+.debug_line     0x0000000000000000      0x223
+ .debug_line    0x0000000000000000       0x7f memory.o
+ .debug_line    0x000000000000007f      0x1a4 main.o
+
+.debug_str      0x0000000000000000      0x179
+ .debug_str     0x0000000000000000       0xe4 memory.o
+                                         0xfc (size before relaxing)
+ .debug_str     0x00000000000000e4       0x95 main.o
+                                        0x183 (size before relaxing)
+
+.comment        0x0000000000000000       0x11
+ .comment       0x0000000000000000       0x11 memory.o
+                                         0x12 (size before relaxing)
+ .comment       0x0000000000000011       0x12 main.o
+
+.ARM.attributes
+                0x0000000000000000       0x34
+ .ARM.attributes
+                0x0000000000000000       0x34 memory.o
+ .ARM.attributes
+                0x0000000000000034       0x34 main.o
+
+.debug_frame    0x0000000000000000      0x100
+ .debug_frame   0x0000000000000000       0xcc memory.o
+ .debug_frame   0x00000000000000cc       0x34 main.o
