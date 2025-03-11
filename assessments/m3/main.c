@@ -23,11 +23,11 @@
 #include <stdlib.h>
 #include "misc.h"
 
-static int g1;
-const int g2 = 45;
-char g3 = 12;
-char g4 = 0;
-extern char g5[N];
+static int g1; // data bss (uninitialized) RW program
+const int g2 = 45; //code const R program
+char g3 = 12;    //data data RW program
+char g4 = 0;     //data bss RW program
+extern char g5[N];  //data bss RW program
 
 int main()
 {
