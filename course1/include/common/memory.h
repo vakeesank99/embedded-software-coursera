@@ -90,4 +90,71 @@ void set_all(char * ptr, char value, unsigned int size);
  */
 void clear_all(char * ptr, unsigned int size);
 
+
+
+/**
+ * @brief without data corruption copy data using pointers 
+ * @param src source to copy from
+ * @param dst destination copty to
+ * @param length length of the data 
+ * @return  uint8_t pointer to dst 
+*/
+uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length);
+  
+
+/**
+ * @brief does not consider data corruption, copy data using pointers 
+ * @param src source to copy from
+ * @param dst destination copty to
+ * @param length length of the data 
+ * @return  uint8_t pointer to dst 
+*/
+  uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length);
+  
+
+/**
+ * @brief set particular value to memory area using pointers
+ * @param src source to copy from
+ * @param value value to be copied to memory
+ * @param length length of the data 
+ * @return  uint8_t pointer to src 
+*/
+  uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value);
+  
+  
+  
+  /**
+   * This should take a pointer to a memory location, a length in bytes 
+   * and zero out all of the memory. All operations need to be performed
+   *  using pointer arithmetic, not array indexing Should return a pointer
+   *  to the source (src). You should NOT reuse the clear_all() function
+  */
+  uint8_t * my_memzero(uint8_t * src, size_t length);
+  /**
+   * This should take a pointer to a memory location and a length in bytes 
+   * and reverse the order of all of the bytes. All operations need to be
+   *  performed using pointer arithmetic, not array indexing  Should return 
+   * a pointer to the source.
+  */
+  uint8_t * my_reverse(uint8_t * src, size_t length);
+  
+  
+  
+  /**
+   * This should take number of words to allocate in dynamic memory
+   * All operations need to be performed using pointer arithmetic, 
+   * not array indexing Should return a pointer to memory if successful, 
+   * or a Null Pointer if not successful
+  */
+  int32_t * reserve_words(size_t length);
+  
+  /**
+   * Should free a dynamic memory allocation by providing the pointer src 
+   * to the function  All operations need to be performed using pointer
+   *  arithmetic, not array indexing
+  */
+  void free_words(int32_t * src);
+  
+
+
 #endif /* __MEMORY_H__ */
