@@ -48,3 +48,113 @@ void clear_all(char * ptr, unsigned int size){
   set_all(ptr, 0, size);
 }
 
+/**
+ * @brief This function takes two byte pointers (one source and one destination) and 
+ * a length of bytes to move from the source location to the destination.
+ * The behavior should handle overlap of source and destination. 
+ * Copy should occur, with no data corruption. All operations need to be 
+ * performed using pointer arithmetic, not array indexing Should 
+ * @return  a pointer to the destination (dst). 
+*/
+uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
+  if ((src+length <=dst)||(src-length>=dst)){ 
+  unsigned int i;
+
+  for(i = 0; i < length; i++) {
+    *(dst+i)=*(src+i);
+  }
+  return dst;
+}
+}
+
+
+
+/**
+ * @brief This function takes two byte pointers (one source and one destination) and 
+ * a length of bytes to copy from the source location to the destination. 
+ * The behavior is undefined if there is overlap of source and destination. 
+ * Copy should still occur, but will likely corrupt your data. All operations 
+ * need to be performed using pointer arithmetic, not array indexing Should 
+ * @return a pointer to the destination (dst). 
+*/
+uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length){
+  unsigned int i;
+
+  for(i = 0; i < length; i++) {
+    *(dst+i)=*(src+i);
+  }
+  return dst;
+}
+
+/**
+ * This should take a pointer to a source memory location, a length in bytes and 
+ * set all locations of that memory to a given value. All operations need to be 
+ * performed using pointer arithmetic, not array indexing
+ * Should return a pointer to the source (src).
+ * You should NOT reuse the set_all() function
+*/
+uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value){
+  unsigned int i;
+  for(i = 0; i < length; i++) {
+    *(src+i)=value;
+  }
+  return src;
+}
+
+
+
+/**
+ * This should take a pointer to a memory location, a length in bytes 
+ * and zero out all of the memory. All operations need to be performed
+ *  using pointer arithmetic, not array indexing Should return a pointer
+ *  to the source (src). You should NOT reuse the clear_all() function
+*/
+uint8_t * my_memzero(uint8_t * src, size_t length){
+  unsigned int i;
+  for(i = 0; i < length; i++) {
+    *(src+i)=0;
+  }
+  return src;
+  }
+/**
+ * This should take a pointer to a memory location and a length in bytes 
+ * and reverse the order of all of the bytes. All operations need to be
+ *  performed using pointer arithmetic, not array indexing  Should return 
+ * a pointer to the source.
+*/
+uint8_t * my_reverse(uint8_t * src, size_t length){
+  unsigned int i,j,temp;
+  i=0;
+  j=length-1;
+  while(i<j){
+    temp = *(src+i);
+    *(src+i) = *(src+j);
+    *(src+j) = temp;
+
+    i++;
+    j--;
+  }
+  return src;
+}
+
+
+
+/**
+ * This should take number of words to allocate in dynamic memory
+ * All operations need to be performed using pointer arithmetic, 
+ * not array indexing Should return a pointer to memory if successful, 
+ * or a Null Pointer if not successful
+*/
+int32_t * reserve_words(size_t length){
+  return (int32_t *)malloc(length);
+}
+
+/**
+ * Should free a dynamic memory allocation by providing the pointer src 
+ * to the function  All operations need to be performed using pointer
+ *  arithmetic, not array indexing
+*/
+void free_words(int32_t * src){
+  free(src);
+}
+
