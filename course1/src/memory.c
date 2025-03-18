@@ -57,15 +57,19 @@ void clear_all(char * ptr, unsigned int size){
  * @return  a pointer to the destination (dst). 
 */
 uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
-  if ((src+length <=dst)||(src-length>=dst)){ 
-    unsigned int i;
-
+    // return NULL;
+  unsigned int i;
+  if ((src +length  > dst)&& (src<dst)){ 
+    for(i = 0; i < length; i++) {
+      *(dst+length-1-i)=*(src+length-1-i);
+    }
+  
+  } else{
     for(i = 0; i < length; i++) {
       *(dst+i)=*(src+i);
     }
-    return dst;
   }
-return NULL;
+  return dst;
 }
 
 
