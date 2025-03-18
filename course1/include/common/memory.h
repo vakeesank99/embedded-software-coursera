@@ -19,6 +19,9 @@
  * @date April 1 2017
  *
  */
+#include <stddef.h>
+#include <stdlib.h>
+#include <stdint.h>
 #ifndef __MEMORY_H__
 #define __MEMORY_H__
 
@@ -153,7 +156,7 @@ uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length);
    * to the function  All operations need to be performed using pointer
    *  arithmetic, not array indexing
   */
-  void free_words(int32_t * src);
+  void free_words(uint32_t * src);
   
 
 

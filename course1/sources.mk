@@ -10,13 +10,16 @@
 #*****************************************************************************
 CURDIR=$(PWD)
 # Add your Source files to this variable
-SOURCES = 	memory.c \
-			main.c 
+SOURCES = 	src/memory.c \
+			src/main.c \
+			src/data.c \
+			src/stats.c \
+			src/course1.c
 #system_msp432p401r.c \ interrupts_msp432p401r_gcc.c \ startup_msp432p401r_gcc.c \
 
 
 # Add your include paths to this variable
-INCLUDES = -I../include/common/ \
-			-I../include/msp432/ \
-			-I../include/CMSIS/ 
+INCLUDES = -I include/common/ \
+			-I include/msp432/ \
+			-I include/CMSIS/ 
 

@@ -1,4 +1,4 @@
-#include "include/common/data.h"
+#include "data.h"
 
 /**
  * Integer-to-ASCII needs to convert data from a standard integer type into an ASCII string.

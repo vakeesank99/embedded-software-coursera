@@ -23,7 +23,7 @@
 #include "platform.h"
 #include "course1.h"
 
-#define COURSE1
+// #define COURSE1
 
 /* A simple main file */
 int main(void) {

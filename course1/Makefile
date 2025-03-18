@@ -24,11 +24,11 @@
 include sources.mk
 
 # Platform Overrides
-PLATFORM ?=MSP432
+PLATFORM ?=HOST
 
 ifeq ($(PLATFORM),HOST)
 CC=gcc
-CFLAGS= -DHOST
+CFLAGS= -DHOST -DCOURSE1 
 ARCH= corei7
 LD=gcc
 LDFLAGS = 
@@ -44,7 +44,7 @@ endif
 # Architectures Specific Flags
 
 # Compiler Flags and Defines
-BASENAME= c1m2
+BASENAME= main
 
 
 # SPECS = nosys.specs

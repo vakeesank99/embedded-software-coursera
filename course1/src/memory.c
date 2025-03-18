@@ -58,13 +58,14 @@ void clear_all(char * ptr, unsigned int size){
 */
 uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
   if ((src+length <=dst)||(src-length>=dst)){ 
-  unsigned int i;
+    unsigned int i;
 
-  for(i = 0; i < length; i++) {
-    *(dst+i)=*(src+i);
+    for(i = 0; i < length; i++) {
+      *(dst+i)=*(src+i);
+    }
+    return dst;
   }
-  return dst;
-}
+return NULL;
 }
 
 
@@ -154,7 +155,7 @@ int32_t * reserve_words(size_t length){
  * to the function  All operations need to be performed using pointer
  *  arithmetic, not array indexing
 */
-void free_words(int32_t * src){
+void free_words(uint32_t * src){
   free(src);
 }
 
